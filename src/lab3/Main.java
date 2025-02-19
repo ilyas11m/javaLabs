@@ -30,19 +30,6 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.out.println("Ошибка чтения файла " + filePath);
         }
-
-        System.out.println("Список: " + list);
-        try {
-            File outputFile = new File("src/lab3/files/output.txt");
-            FileWriter fileWriter = new FileWriter(outputFile, true);
-            for (int i = 0; i < list.size(); i++) {
-                fileWriter.append(String.valueOf(list.get(i))).append(" ");
-                fileWriter.flush();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
 //        System.out.println("Введите элементы.");
 //        int count = 1;
 //        while (list.size() < size) {
@@ -79,5 +66,24 @@ public class Main {
             sum1 += integer;
         }
         System.out.println("Сумма чётных и отрицательных: " + sum1);
+
+        try {
+            File outputFile = new File("src/lab3/files/output.txt");
+            FileWriter fileWriter = new FileWriter(outputFile, true);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Список:");
+            fileWriter.append(stringBuilder);
+
+            for (int i = 0; i < list.size(); i++) {
+                fileWriter.append(String.valueOf(list.get(i))).append(" ");
+            }
+            fileWriter.append("\nСписок из чётных и отрицательных чисел " + evenNegative);
+            fileWriter.append("\nСписок из нечётных и положительных чисел " + oddPositive);
+            fileWriter.append("\nСумма чётных и отрицательных: " + sum1);
+            fileWriter.append("\nСумма нечётных и положительных: " + sum2);
+            fileWriter.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
