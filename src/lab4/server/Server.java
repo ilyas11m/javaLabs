@@ -67,10 +67,13 @@ public class Server {
 
         System.out.println("Запрещенный для изменения индекс массивов: " + restricted);
 
+        System.out.println("Введите путь до файла журнала: ");
+        String logFile = scanner.nextLine();
+
         System.out.println("Введите путь до файла, в котором хранится значение порта: ");
         String portFile = scanner.nextLine();
 
-        File file = new File(portFile + ".txt");
+        File file = new File(portFile);
 
         try {
             Scanner scannerFile = new Scanner(file);
@@ -90,11 +93,13 @@ public class Server {
             Socket socket = server.accept();
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter writer = new PrintWriter(socket.getOutputStream(),true);
+            FileWriter fileWriter = new FileWriter(logFile, true);
             while (true) {
                 String response = "200-OK";
                 writer.println(response);
                 String request = reader.readLine();
                 System.out.println("Request: " + request);
+                fileWriter.append("Request: " + request + "\n");
                 if (request.equals("int")){
                     try {
                         int row = Integer.parseInt(reader.readLine());
@@ -147,6 +152,7 @@ public class Server {
                     }
                 }
                 if (request.equals("close-socket")) {
+                    fileWriter.close();
                     reader.close();
                     break;
                 }
