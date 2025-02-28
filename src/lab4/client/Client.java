@@ -59,7 +59,7 @@ public class Client {
 
                             String log = reader.readLine();
                             System.out.println("Log: " + log);
-                            fileWriter.append(log + "\n");
+                            fileWriter.append(log);
                             break;
 
                         } catch (Exception e) {
@@ -71,23 +71,24 @@ public class Client {
                         try {
                             System.out.println("Введите строку в вещественном массиве: ");
                             int row = scanner.nextInt();
+                            scanner.nextLine();
                             writer.println(row);
                             writer.flush();
 
                             System.out.println("Введите колонку в вещественном массиве: ");
                             int column = scanner.nextInt();
+                            scanner.nextLine();
                             writer.println(column);
                             writer.flush();
 
                             System.out.println("Введите новое значение: ");
                             double elem = scanner.nextDouble();
-                            scanner.nextLine();
                             writer.println(elem);
                             writer.flush();
 
                             String log = reader.readLine();
                             System.out.println("Log: " + log);
-                            fileWriter.append(log + "\n");
+                            fileWriter.append(log).append("\n");
                             break;
 
                         } catch (Exception e) {
@@ -115,7 +116,7 @@ public class Client {
 
                             String log = reader.readLine();
                             System.out.println("Log: " + log);
-                            fileWriter.append(log + "\n");
+                            fileWriter.append(log).append("\n");
                             break;
 
                         } catch (Exception e) {
