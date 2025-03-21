@@ -4,9 +4,8 @@ import java.util.Observable;
 
 public class FileOut extends Observable {
 
-    public void fileOut(String message) {
+    public void fileOut() {
         setChanged();
         notifyObservers();
-        System.out.println(message);
     }
 }

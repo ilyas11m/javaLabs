@@ -4,10 +4,9 @@ import java.util.Observable;
 
 public class FileIn extends Observable {
 
-    public void consoleIn(String message) {
+    public void consoleIn() {
         setChanged();
         notifyObservers();
-        System.out.println(message);
     }
 
 }
